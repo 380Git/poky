@@ -1092,6 +1092,17 @@ def package_qa_check_empty_dirs(pkg, d, messages):
             msg = "%s installs files in %s, %s" % (pkg, dir, recommendation)
             oe.qa.add_message(messages, "empty-dirs", msg)
 
+QAPKGTEST[rrecommends-non-existent] = "package_qa_check_rrecommends_non_existent"
+def package_qa_check_rrecommends_non_existent(pkg, d, messages):
+    pkg_data = oe.packagedata.read_subpkgdata_dict(pkg, d)
+    rrecommends = bb.utils.explode_dep_versions2(pkg_data.get("RRECOMMENDS", ""))
+    for rrecommend in rrecommends:
+        rrec_data = oe.packagedata.read_subpkgdata_dict(rrecommend, d)
+        if (rrecommend in (d.getVar("PACKAGES") or "").split()
+                and rrec_data["FILES_INFO"] == "{}"
+                and not bb.utils.to_boolean(rrec_data.get("ALLOW_EMPTY", "0"), False)):
+            oe.qa.add_message(messages, "rrecommends-non-existent", "{0} rrecommends {1} but {1} won't be built".format(pkg, rrecommend))
+
 def package_qa_check_encoding(keys, encode, d):
     def check_encoding(key, enc):
         sane = True
