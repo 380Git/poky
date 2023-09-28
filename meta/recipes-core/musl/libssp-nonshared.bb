@@ -31,5 +31,4 @@ do_install() {
 #
 COMPATIBLE_HOST = ".*-musl.*"
 RDEPENDS:${PN}-staticdev = ""
-DEV_PKG_DEPENDENCY = ""
 RRECOMMENDS:${PN}-dbg = "${PN}-staticdev (= ${EXTENDPKGV})"

@@ -15,6 +15,3 @@ do_install:append() {
 	# Remove original directory
 	rmdir ${D}${prefix}/${TARGET_SYS}
 }
-
-# No rpm package is actually created but -dev depends on it, avoid dnf error
-DEV_PKG_DEPENDENCY:libc-newlib = ""

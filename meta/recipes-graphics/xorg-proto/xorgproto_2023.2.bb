@@ -18,8 +18,7 @@ PACKAGECONFIG[legacy] = "-Dlegacy=true,-Dlegacy=false"
 
 # Datadir only used to install pc files, $datadir/pkgconfig
 datadir="${libdir}"
-# ${PN} is empty so we need to tweak -dev and -dbg package dependencies
-DEV_PKG_DEPENDENCY = ""
+# ${PN} is empty so we need to tweak -dbg package dependencies
 RRECOMMENDS:${PN}-dbg = "${PN}-dev (= ${EXTENDPKGV})"
 
 BBCLASSEXTEND = "native nativesdk"

@@ -213,9 +213,6 @@ FULL_OPTIMIZATION:append = " -fno-omit-frame-pointer"
 CFLAGS:append:armv5 = " -DMISSING_64BIT_ATOMICS"
 CFLAGS:append:armv6 = " -DMISSING_64BIT_ATOMICS"
 
-# Remove the mesa dependency on mesa-dev, as mesa is empty
-DEV_PKG_DEPENDENCY = ""
-
 # Khronos documentation says that include/GLES2/gl2ext.h can be used for
 # OpenGL ES 3 specification as well as for OpenGL ES 2.
 # There can be applications including GLES2/gl2ext.h instead of GLES3/gl3ext.h

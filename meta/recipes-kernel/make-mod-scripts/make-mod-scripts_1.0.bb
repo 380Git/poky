@@ -13,7 +13,6 @@ S = "${WORKDIR}"
 do_configure[depends] += "virtual/kernel:do_shared_workdir openssl-native:do_populate_sysroot"
 do_compile[depends] += "virtual/kernel:do_compile_kernelmodules"
 
-DEV_PKG_DEPENDENCY = ""
 
 DEPENDS += "bc-native bison-native"
 DEPENDS += "gmp-native"

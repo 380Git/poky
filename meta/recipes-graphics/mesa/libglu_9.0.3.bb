@@ -26,6 +26,3 @@ EXTRA_OEMESON = "-Dgl_provider=gl"
 
 # Requires libGL.so which is provided by mesa when x11 in DISTRO_FEATURES
 REQUIRED_DISTRO_FEATURES = "x11 opengl"
-
-# Remove the mesa-glu dependency in mesa-glu-dev, as mesa-glu is empty
-DEV_PKG_DEPENDENCY = ""

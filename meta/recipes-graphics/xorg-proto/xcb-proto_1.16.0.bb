@@ -25,7 +25,6 @@ FILES:${PN} = ""
 FILES:${PN}-dev += "${datadir}/xcb/*.xml ${datadir}/xcb/*.xsd"
 FILES:python-xcbgen = "${PYTHON_SITEPACKAGES_DIR}"
 
-DEV_PKG_DEPENDENCY = ""
 RRECOMMENDS:${PN}-dbg = "${PN}-dev (= ${EXTENDPKGV})"
 
 BBCLASSEXTEND = "native nativesdk"

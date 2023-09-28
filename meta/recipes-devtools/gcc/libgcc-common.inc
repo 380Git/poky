@@ -54,10 +54,6 @@ do_install:append:libc-newlib () {
 	fi
 }
 
-# No rpm package is actually created but -dev depends on it, avoid dnf error
-DEV_PKG_DEPENDENCY:libc-baremetal = ""
-DEV_PKG_DEPENDENCY:libc-newlib = ""
-
 BBCLASSEXTEND = "nativesdk"
 
 addtask multilib_install after do_install before do_package do_populate_sysroot
