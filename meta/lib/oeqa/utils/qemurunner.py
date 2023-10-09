@@ -764,6 +764,38 @@ class LoggingThread(threading.Thread):
                 # Event to stop the thread
                 if self.readpipe == event[0]:
                     self.logger.debug("Stop event received")
+                    self.readsock.sendall(bytes("root\n", "utf-8"))
+                    time.sleep(0.4)
+                    self.readsock.sendall(bytes("ps\n", "utf-8"))
+                    time.sleep(0.4)
+                    self.readsock.sendall(bytes("ps\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("cat /proc/tty/driver/serial\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("echo helloA > /dev/ttyS1\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("echo helloB > /dev/ttyS0\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("echo helloC > /dev/ttyAMA0\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("echo helloD > /dev/hvc0\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("cat /proc/tty/driver/serial\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("cat /proc/consoles\n", "utf-8"))
+                    time.sleep(0.1)
+                    self.readsock.sendall(bytes("dmesg\n", "utf-8"))
+                    #time.sleep(0.1)
+                    #self.readsock.sendall(bytes("killall getty\n", "utf-8"))
+                    data = True
+                    while data:
+                        try:
+                            data = self.recv(1024)
+                            self.logger.debug("Data received logging thread shutdown %s" % data.decode('utf-8', 'replace'))
+                            self.logfunc(data)
+                            time.sleep(0.1)
+                        except:
+                            data = None
                     breakout = True
                     break
 
