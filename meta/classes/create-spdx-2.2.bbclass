@@ -590,7 +590,7 @@ python do_create_spdx() {
     if patched_cves:
         recipe.sourceInfo = "CVEs fixed: " + patched_cves
 
-    cpe_ids = oe.cve_check.get_cpe_ids(d.getVar("CVE_PRODUCT"), d.getVar("CVE_VERSION"))
+    cpe_ids = oe.cve_check.get_cpe_ids(d, d.getVar("CVE_PRODUCT"), d.getVar("CVE_VERSION"))
     if cpe_ids:
         for cpe_id in cpe_ids:
             cpe = oe.spdx.SPDXExternalReference()

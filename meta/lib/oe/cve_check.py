@@ -140,15 +140,14 @@ def get_patched_cves(d):
     return patched_cves
 
 
-def get_cpe_ids(cve_product, version):
+def get_cpe_ids(d, cve_product, cve_version):
     """
     Get list of CPE identifiers for the given product and version
     """
 
-    version = version.split("+git")[0]
-
     cpe_ids = []
     for product in cve_product.split():
+        version = (d.getVar("CVE_VERSION_%s" % product) or cve_version).split("+git")[0]
         # CVE_PRODUCT in recipes may include vendor information for CPE identifiers. If not,
         # use wildcard for vendor.
         if ":" in product:
